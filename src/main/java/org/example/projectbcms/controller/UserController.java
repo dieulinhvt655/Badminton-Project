@@ -1,8 +1,7 @@
-package org.example.projectbcms;
+package org.example.projectbcms.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.example.projectbcms.service.serviceInterface.UserService;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController

@@ -1,4 +1,4 @@
-package org.example.projectbcms;
+package org.example.projectbcms.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,6 @@
-package org.example.projectbcms;
+package org.example.projectbcms.service.serviceInterface;
+
+import org.example.projectbcms.model.User;
 
 import java.util.List;
 

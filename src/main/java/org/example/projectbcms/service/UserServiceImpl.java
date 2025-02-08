@@ -1,6 +1,9 @@
-package org.example.projectbcms;
+package org.example.projectbcms.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.projectbcms.repository.UserRepository;
+import org.example.projectbcms.service.serviceInterface.UserService;
+import org.example.projectbcms.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
