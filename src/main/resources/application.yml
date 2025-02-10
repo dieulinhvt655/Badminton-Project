@@ -15,8 +15,10 @@ spring:
       ddl-auto: none # Tạo bảng tự động
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
+        dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
 
 server:
-  port: 8088 #hiển thị
+  port: 8080 #hiển thị
+
+

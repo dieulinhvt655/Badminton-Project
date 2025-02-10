@@ -1,6 +1,7 @@
 package org.example.projectbcms.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.XSlf4j;
 import org.example.projectbcms.repository.UserRepository;
 import org.example.projectbcms.service.serviceInterface.UserService;
 import org.example.projectbcms.model.User;
@@ -36,21 +37,45 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(Long id, User updatedUser) {
-    //check if user exists
+        // Kiểm tra xem user có tồn tại không
         User userPresent = getUserById(id);
+
         if (userPresent != null) {
-            userPresent.setPassword(updatedUser.getPassword()); //hashing password
-            userPresent.setEmail(updatedUser.getEmail());
-            userPresent.setFullName(updatedUser.getFullName());
-            userPresent.setPhoneNumber(updatedUser.getPhoneNumber());
-            userPresent.setRole(updatedUser.getRole());
+            userPresent.setPassword(Optional.ofNullable(updatedUser.getPassword())
+                    .orElse(userPresent.getPassword()));
+
+            userPresent.setEmail(Optional.ofNullable(updatedUser.getEmail())
+                    .orElse(userPresent.getEmail()));
+
+            userPresent.setFullName(Optional.ofNullable(updatedUser.getFullName())
+                    .orElse(userPresent.getFullName()));
+
+            userPresent.setPhoneNumber(Optional.ofNullable(updatedUser.getPhoneNumber())
+                    .orElse(userPresent.getPhoneNumber()));
+
+            userPresent.setRole(Optional.ofNullable(updatedUser.getRole())
+                    .orElse(userPresent.getRole()));
+
+            return userRepository.save(userPresent);
         }
-        assert userPresent != null; //user phai khac null
-        return userRepository.save(userPresent);
+
+        return null; // Trả về null nếu user không tồn tại
     }
+
 
     @Override
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+        System.out.println("xoa thanh cong");
+    }
+
+    @Override
+    public User login(String username, String password) {
+        User user = userRepository.findByUsername(username);
+
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
 }

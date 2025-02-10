@@ -24,7 +24,7 @@ public class Product {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "description", nullable = true, columnDefinition = "TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "quantity_in_stock", nullable = false)
@@ -33,7 +33,8 @@ public class Product {
     @Column(name = "buy_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal buyPrice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_line_id", nullable = false, updatable = false)
     private ProductLine productLine;
+
 }
