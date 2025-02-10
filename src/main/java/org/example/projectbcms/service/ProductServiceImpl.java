@@ -38,14 +38,21 @@ public class ProductServiceImpl implements ProductService {
         if(productPresent!=null) {
             productPresent.setName(Optional.ofNullable(updateProduct.getName())
                     .orElse(productPresent.getName()));
+            productPresent.setDescription(Optional.ofNullable(updateProduct.getDescription()
+                    ).orElse(productPresent.getDescription()));
+            productPresent.setQuantityInStock(Optional.ofNullable(updateProduct.getQuantityInStock())
+                    .orElse(productPresent.getQuantityInStock()));
+            productPresent.setBuyPrice(Optional.ofNullable(productPresent.getBuyPrice())
+                    .orElse(productPresent.getBuyPrice()));
 
+            return productRepository.save(productPresent);
         }
-
         return null;
     }
 
     @Override
     public void deleteProduct(Long id) {
-
+        productRepository.deleteById(id);
+        System.out.println("Product deleted successfully");
     }
 }
