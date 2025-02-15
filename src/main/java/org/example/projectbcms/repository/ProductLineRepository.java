@@ -1,13 +1,9 @@
 package org.example.projectbcms.repository;
 
-import org.example.projectbcms.model.User;
+import org.example.projectbcms.model.ProductLine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-
-    User findByUsername(String username);
-    //generic <>
-
+public interface ProductLineRepository extends JpaRepository<ProductLine, Long> {
 }

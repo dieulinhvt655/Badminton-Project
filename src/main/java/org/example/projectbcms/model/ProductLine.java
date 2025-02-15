@@ -19,6 +19,9 @@ public class ProductLine {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
+    @Column(name = "name", length = 20)
+    private String name;
+
     @Column(name = "description", nullable = true, columnDefinition = "TEXT")
     private String description;
 

@@ -7,6 +7,7 @@ import java.util.List;
 
 @Service
 public interface ProductService {
+
     Product createProduct(Product product);
 
     Product getProductById(Long id);

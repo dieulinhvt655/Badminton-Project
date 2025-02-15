@@ -1,7 +1,6 @@
 package org.example.projectbcms.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.XSlf4j;
 import org.example.projectbcms.repository.UserRepository;
 import org.example.projectbcms.service.serviceInterface.UserService;
 import org.example.projectbcms.model.User;
@@ -25,7 +24,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
+        // tìm kiếm user qua id
         Optional<User> user = userRepository.findById(id);
+        // nếu != null -> trả về user, khum thì orElse trả về 1 String ....
         return user.orElseThrow(()-> new RuntimeException("User with id " + id + " not found"));
     }
 
@@ -37,29 +38,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(Long id, User updatedUser) {
+
         // Kiểm tra xem user có tồn tại không
         User userPresent = getUserById(id);
+        //
+        userPresent.setEmail(updatedUser.getEmail());
+        userPresent.setPassword(updatedUser.getPassword());
+        userPresent.setPhoneNumber(updatedUser.getPhoneNumber());
+        userPresent.setRole(updatedUser.getRole());
 
-        if (userPresent != null) {
-            userPresent.setPassword(Optional.ofNullable(updatedUser.getPassword())
-                    .orElse(userPresent.getPassword()));
-
-            userPresent.setEmail(Optional.ofNullable(updatedUser.getEmail())
-                    .orElse(userPresent.getEmail()));
-
-            userPresent.setFullName(Optional.ofNullable(updatedUser.getFullName())
-                    .orElse(userPresent.getFullName()));
-
-            userPresent.setPhoneNumber(Optional.ofNullable(updatedUser.getPhoneNumber())
-                    .orElse(userPresent.getPhoneNumber()));
-
-            userPresent.setRole(Optional.ofNullable(updatedUser.getRole())
-                    .orElse(userPresent.getRole()));
-
-            return userRepository.save(userPresent);
-        }
-
-        return null; // Trả về null nếu user không tồn tại
+        return userRepository.save(userPresent);
     }
 
 

@@ -13,6 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
+    // dependency injection
     private final ProductRepository productRepository;
 
     @Override
@@ -35,19 +36,13 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product updateProduct(Long id, Product updateProduct) {
         Product productPresent = getProductById(id);
-        if(productPresent!=null) {
-            productPresent.setName(Optional.ofNullable(updateProduct.getName())
-                    .orElse(productPresent.getName()));
-            productPresent.setDescription(Optional.ofNullable(updateProduct.getDescription()
-                    ).orElse(productPresent.getDescription()));
-            productPresent.setQuantityInStock(Optional.ofNullable(updateProduct.getQuantityInStock())
-                    .orElse(productPresent.getQuantityInStock()));
-            productPresent.setBuyPrice(Optional.ofNullable(productPresent.getBuyPrice())
-                    .orElse(productPresent.getBuyPrice()));
 
-            return productRepository.save(productPresent);
-        }
-        return null;
+        productPresent.setName(updateProduct.getName());
+        productPresent.setQuantityInStock(updateProduct.getQuantityInStock());
+        productPresent.setDescription(updateProduct.getDescription());
+        productPresent.setBuyPrice(updateProduct.getBuyPrice());
+
+        return productRepository.save(productPresent);
     }
 
     @Override

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-//@Controller - SSR
+//@Controller - SSR - laf controller chi phat trien api
 @RestController  // SPA - api
 @RequestMapping("/api/users")
 @RequiredArgsConstructor

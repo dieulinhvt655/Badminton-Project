@@ -1,10 +1,7 @@
 package org.example.projectbcms.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
@@ -12,6 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
+@Builder
 public class User {
 
     //id field
@@ -21,14 +19,14 @@ public class User {
     private Long id;
 
     //username field
-    @Column(name = "username", nullable = false, length = 50)
+    @Column(name = "username", length = 50)
     private String username;
 
     //password field
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", length = 50)
     private String password;
 
-    @Column(name = "full_name", nullable = false, length = 255)
+    @Column(name = "full_name", length = 255)
     private String fullName;
 
     @Column(name = "email", length = 100)
