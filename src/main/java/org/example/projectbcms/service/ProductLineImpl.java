@@ -7,6 +7,7 @@ import org.example.projectbcms.service.serviceInterface.ProductLineService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -26,9 +27,15 @@ public class ProductLineImpl implements ProductLineService {
     public ProductLine updateProductLine(Long id, ProductLine productLine) {
         ProductLine productLinePresent = getProductLineById(id);
         // chỉ update đc description và img
-        productLinePresent.setName(productLine.getName());
-        productLinePresent.setDescription(productLine.getDescription());
-        productLinePresent.setImage(productLine.getImage());
+        if(!Objects.isNull(productLine.getName())) {
+            productLinePresent.setName(productLine.getName());
+        }
+        if(!Objects.isNull(productLine.getDescription())) {
+            productLinePresent.setDescription(productLine.getDescription());
+        }
+        if (!Objects.isNull(productLine.getImage())){
+            productLinePresent.setImage(productLine.getImage());
+        }
 
         return productLineRepository.save(productLinePresent);
     }

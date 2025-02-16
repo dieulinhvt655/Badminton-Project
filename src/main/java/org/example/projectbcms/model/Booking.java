@@ -3,13 +3,16 @@ package org.example.projectbcms.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "booking")
 @Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Booking {

@@ -19,13 +19,13 @@ public class ProductLine {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
-    @Column(name = "name", length = 20)
+    @Column(name = "name", nullable = true, length = 20)
     private String name;
 
     @Column(name = "description", nullable = true, columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "image", length = 255)
+    @Column(name = "image", nullable = true, length = 255)
     private String image;
 
 }

@@ -3,7 +3,10 @@ package org.example.projectbcms.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.projectbcms.model.ProductLine;
 import org.example.projectbcms.service.serviceInterface.ProductLineService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/product-lines")
@@ -20,6 +23,23 @@ public class ProductLineController {
     @GetMapping("/hien-thi-thong-tin-dong-san-pham/{id}")
     public ProductLine getProductLineById(@PathVariable Long id) {
         return productLineService.getProductLineById(id);
+    }
+
+    @PutMapping("/cap-nhat/{id}")
+    public ProductLine updateProductLine(@PathVariable Long id, @RequestBody ProductLine updateProductLine) {
+        return productLineService.updateProductLine(id, updateProductLine);
+    }
+
+    //????????????????????????????????????????
+    @DeleteMapping("xoa-dong-san-pham/{id}")
+    public ResponseEntity<?> deleteProductLineById(@PathVariable Long id) {
+        productLineService.deleteProductLineById(id);
+        return ResponseEntity.ok().body("Product line with id " + id + " was deleted");
+    }
+
+    @GetMapping("/hien-thi-danh-sach-dong-san-pham")
+    public List <ProductLine> getAllProductLines() {
+        return productLineService.getAllProductLines();
     }
 
 
