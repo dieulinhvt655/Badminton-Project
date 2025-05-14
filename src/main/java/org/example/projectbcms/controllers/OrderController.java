@@ -29,4 +29,16 @@ public class OrderController {
         return orderService.updateOrderStatus(newOrder, orderId);
     }
     // xu ly thanh toan - lien ket ngan hang, luu thong tin da thanh toan hay chua
+
+    // tìm kiếm thông tin, lọc thông tin đơn hàng thông qua mã đơn hàng (Id of Order)
+    @GetMapping("/thong-tin-don-hang/{id}")
+    public OrderDTO getOrder(@PathVariable Long id) {
+        return orderService.getOrderById(id);
+    }
+
+    //huỷ đơn hàng
+    @DeleteMapping("/huy-don-hang/{id}")
+    public void cancelOrder(@PathVariable Long id) {
+        orderService.cancelOrder(id);
+    }
 }

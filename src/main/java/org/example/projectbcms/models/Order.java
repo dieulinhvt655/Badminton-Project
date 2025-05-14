@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.example.projectbcms.dtos.OrderDTO;
 
 import java.time.LocalDate;
 
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order extends OrderDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

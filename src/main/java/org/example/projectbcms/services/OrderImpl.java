@@ -99,8 +99,16 @@ public class OrderImpl implements OrderService {
 
     //huy don hang
     @Override
-    public OrderDTO cancelOrder(OrderDTO order) {
-        return null;
+    public void cancelOrder(Long id) {
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        if(order.getOrderStatus().equals("Shipped")) {
+            throw new RuntimeException("Order is shipped. You cannot cancel this order");
+        }
+
+        order.setOrderStatus("Cancelled");
+        orderRepository.save(order);
     }
 
     private static final Logger logger = LoggerFactory.getLogger(OrderImpl.class);
@@ -125,7 +133,16 @@ public class OrderImpl implements OrderService {
     // tim kiem thong tin, loc thong tin don hang thong qua ma don hang
     @Override
     public OrderDTO getOrderById(Long id) {
-        return null;
+        Order order = orderRepository.findById(id).orElseThrow();
+        return OrderDTO.builder()
+                .id(order.getId())
+                .orderDate(order.getOrderDate())
+                .requiredDate(order.getRequiredDate())
+                .shippedDate(order.getShippedDate())
+                .orderStatus(order.getOrderStatus())
+                .comments(order.getComments())
+                .userId(order.getUser() != null ? order.getUser().getId() : null)
+                .build();
     }
 
     // thong ke don hang - tinh tong doanh thu

@@ -20,7 +20,7 @@ public interface OrderService {
     OrderDTO updateOrderStatus(OrderDTO order, Long id);
 
     // huy don hang
-    OrderDTO cancelOrder(OrderDTO order);
+    void cancelOrder(Long id);
 
     // xu ly thanh toan - lien ket ngan hang, luu thong tin da thanh toan hay chua
     // tinh nang nay dang phat trien
